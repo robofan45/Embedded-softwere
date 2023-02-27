@@ -1,0 +1,71 @@
+//ESP32 Assignment 1
+// deffining LED and Buttons
+const int led1 = 15;
+const int led2 = 21;
+const int button1 = 22;
+const int button2 = 23;
+ void setup() 
+ {
+   pinMode(15, OUTPUT);
+   pinMode(21, OUTPUT);
+   pinMode(22, INPUT);
+   pinMode(23, INPUT);
+ }//diffining pins
+ 
+ void signal_a(int pin, int pulsa, float time, int breakb, int d) {
+   digitalWrite(led2, HIGH);
+   delay(50);
+   digitalWrite(led2, LOW);
+   delay(50);
+   //deleying
+   for(int i = 0; i < 13; i ++)
+    {
+     digitalWrite(pin, HIGH);
+     delay(pulsa);
+     //delay by 50 ms
+     pulsa = pulsa + timeinc;
+     digitalWrite(pin, LOW);
+     delay(breakb);
+     //delay puls a and b using for loop 
+   }
+   digitalWrite(pin, LOW);
+   delay(d);
+ }
+
+  void signal_b(int pin, int pulsa, float time, int breakb, int d) {
+   digitalWrite(led2, HIGH);
+   delay(50);
+   digitalWrite(led2 LOW);
+   delay(50);
+   for(int i = 0; i < 13; i ++) 
+   {
+     //using for loop
+     digitalWrite(pin, HIGH);
+     delay(pulsa);
+     pulsa = pulsa - time;
+     digitalWrite(pin, LOW);
+     delay(breakb);
+   }
+   digitalWrite(pin, LOW);
+   delay(d);
+ }
+ 
+ 
+void loop() {
+
+  if(digitalRead(button1)==HIGH)
+  {
+   signal_a(led1,700, 750, 800, 2500);
+  }
+  else if(digitalRead(button2)==HIGH)
+  {
+   signal_b(led1,700, 50, 900, 2500);
+  
+  }
+  else
+
+  {
+   digitalWrite(led2, LOW);     
+   digitalWrite(led1, LOW);
+   }
+ }
